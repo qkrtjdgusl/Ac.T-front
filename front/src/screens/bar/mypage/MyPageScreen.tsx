@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -8,15 +8,11 @@ import {
   Alert,
 } from 'react-native';
 
-const MyPageScreen = ({ navigation }) => {
+const MyPageScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalType, setModalType] = useState('');
 
-  const handleNavigate = (screen) => {
-    navigation.navigate(screen);
-  };
-
-  const handleModal = (type) => {
+  const handleModal = type => {
     setModalType(type);
     setModalVisible(true);
   };
@@ -34,66 +30,59 @@ const MyPageScreen = ({ navigation }) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigate('Profile')}
-      >
+        onPress={() => navigation.navigate('Profile')}>
         <Text style={styles.buttonText}>내 정보</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigate('TravelRecords')}
-      >
+        onPress={() => navigation.navigate('TravelRecords')}>
         <Text style={styles.buttonText}>내 여행기록</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigate('Badges')}
-      >
+        onPress={() => navigation.navigate('Badges')}>
         <Text style={styles.buttonText}>내 뱃지</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigate('Preferences')}
-      >
+        onPress={() => navigation.navigate('Preferences')}>
         <Text style={styles.buttonText}>내 취향</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.logoutButton}
-        onPress={() => handleModal('로그아웃')}
-      >
+        onPress={() => handleModal('로그아웃')}>
         <Text style={styles.buttonText}>로그아웃</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.deleteAccountButton}
-        onPress={() => handleModal('회원탈퇴')}
-      >
+        onPress={() => handleModal('회원탈퇴')}>
         <Text style={styles.buttonText}>회원탈퇴</Text>
       </TouchableOpacity>
 
       <Modal
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
+        onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>정말 {modalType}하시겠습니까?</Text>
-            <TouchableOpacity
-              onPress={handleConfirm}
-              style={styles.confirmButton}
-            >
-              <Text style={styles.modalButtonText}>확인</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              style={styles.cancelButton}
-            >
-              <Text style={styles.modalButtonText}>취소</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                onPress={handleConfirm}
+                style={styles.confirmButton}>
+                <Text style={styles.modalButtonText}>확인</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setModalVisible(false)}
+                style={styles.cancelButton}>
+                <Text style={styles.modalButtonText}>취소</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
@@ -157,21 +146,31 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 20,
   },
+  buttonRow: {
+    flexDirection: 'row', //  버튼을 가로로 배치
+    justifyContent: 'space-between',
+    width: '100%',
+  },
   confirmButton: {
     backgroundColor: '#f00',
     padding: 10,
     marginVertical: 5,
     borderRadius: 5,
+    flex: 1,
+    marginHorizontal: 5,
   },
   cancelButton: {
     backgroundColor: '#ccc',
     padding: 10,
     marginVertical: 5,
     borderRadius: 5,
+    flex: 1,
+    marginHorizontal: 5,
   },
   modalButtonText: {
     color: '#fff',
     fontSize: 16,
+    textAlign: 'center',
   },
 });
 
