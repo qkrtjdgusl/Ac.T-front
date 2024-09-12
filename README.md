@@ -12,3 +12,11 @@ Organized file structure clearly
 ### Main Files
 - App.tsx (includes Tab Navigator)
 - screens folder (HomeScreen, ChatScreen, MyFavoriteScreen, MyPageScreen, ActivityScreen, EventScreen, MateScreen, PostScreen, StoreScreen)
+
+## 9/10
+Completed Modifing mypage folder and MyPageStackNavigator
+
+### Main Files
+- MyPageStackNavigator.tsx (NEW!)
+- TabNavigator.tsx (includes MyPage StackNavigator)
+- screens/bar/mypage/button folder (BadgesScreen, PreferencesScreen, ProfileScreen, TravelRecordsScreen)
