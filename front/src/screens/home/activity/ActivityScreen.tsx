@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-const ActivityScreen = () => {
+const ActivityScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -126,14 +126,18 @@ const ActivityScreen = () => {
         </View>
       </ScrollView>
 
-      <TouchableOpacity style={styles.floatingButton}>
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={() => navigation.navigate('Plus')}>
         <Image
           source={require('../../../assets/icons/home/activity/plus.png')}
           style={styles.icon}
         />
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.floatingButton, styles.searchButton]}>
+      <TouchableOpacity
+        style={[styles.floatingButton, styles.searchButton]}
+        onPress={() => navigation.navigate('Search')}>
         <Image
           source={require('../../../assets/icons/home/activity/search.png')}
           style={styles.icon}

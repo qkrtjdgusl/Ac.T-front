@@ -7,6 +7,8 @@ import PostScreen from '../../screens/home/post/PostScreen';
 import StoreScreen from '../../screens/home/store/StoreScreen';
 import EventScreen from '../../screens/home/event/EventScreen';
 import MateScreen from '../../screens/home/mate/MateScreen';
+import PlusScreen from '../../screens/home/activity/PlusScreen';
+import SearchScreen from '../../screens/home/activity/SearchScreen';
 
 const HomeStack = createStackNavigator();
 
@@ -45,6 +47,16 @@ const HomeStackNavigator = () => {
         name="Event"
         component={EventScreen}
         options={{headerTitle: '이벤트'}}
+      />
+      <HomeStack.Screen
+        name="Plus"
+        component={PlusScreen}
+        options={{headerTitle: ' 강릉시의 맞춤형 액티비티 확인!'}}
+      />
+      <HomeStack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{headerTitle: '장소 검색'}}
       />
     </HomeStack.Navigator>
   );
