@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import {HomeStackParamList} from './HomeStackParamList';
 import HomeScreen from '../../screens/bar/home/HomeScreen';
 import ActivityScreen from '../../screens/home/activity/ActivityScreen';
 import PostScreen from '../../screens/home/post/PostScreen';
@@ -8,9 +8,12 @@ import StoreScreen from '../../screens/home/store/StoreScreen';
 import EventScreen from '../../screens/home/event/EventScreen';
 import MateScreen from '../../screens/home/mate/MateScreen';
 import PlusScreen from '../../screens/home/activity/PlusScreen';
-import SearchScreen from '../../screens/home/activity/SearchScreen';
+import SearchScreen from '../../screens/home/activity/search/SearchScreen';
+import DetailScreen from '../../screens/home/activity/search/DetailScreen';
+import AIDetailScreen from '../../screens/home/activity/search/search_detail/AIDetailScreen';
+import AccommodationDetailScreen from '../../screens/home/activity/search/search_detail/AccommodationDetailScreen';
 
-const HomeStack = createStackNavigator();
+const HomeStack = createStackNavigator<HomeStackParamList>();
 
 const HomeStackNavigator = () => {
   return (
@@ -57,6 +60,21 @@ const HomeStackNavigator = () => {
         name="Search"
         component={SearchScreen}
         options={{headerTitle: '장소 검색'}}
+      />
+      <HomeStack.Screen
+        name="Detail"
+        component={DetailScreen}
+        options={{headerTitle: '장소 상세 정보'}}
+      />
+      <HomeStack.Screen
+        name="AIDetail"
+        component={AIDetailScreen}
+        options={{headerTitle: 'Ac.T AI 추천 결과'}}
+      />
+      <HomeStack.Screen
+        name="AccommodationDetail"
+        component={AccommodationDetailScreen}
+        options={{headerTitle: '강릉시의 숙박시설 살펴보기!'}}
       />
     </HomeStack.Navigator>
   );

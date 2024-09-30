@@ -8,18 +8,12 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {colors} from '../../../constants/colors';
+import {useNavigation} from '@react-navigation/native';
+import {colors} from '../../../../constants/colors';
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [results, setResults] = useState([]); // 검색 결과를 저장하는 상태
-
-  // 검색어가 변경될 때 호출되는 함수
-  const handleSearch = query => {
-    setSearchQuery(query);
-    // 실제 검색 기능 구현 (나중에 데이터셋을 연결할 수 있음)
-    // 예: setResults(filteredData);
-  };
+  const navigation = useNavigation();
 
   // 임시 검색 결과 (데이터셋을 연결할 때 이 부분을 업데이트 가능)
   const tempResults = [
@@ -29,6 +23,8 @@ const SearchScreen = () => {
       distance: '2.0km',
       category: '카페',
       address: '대한민국 성남시 000동 000, 000길',
+      imageUrl:
+        'https://fastly.picsum.photos/id/2/5000/3333.jpg?hmac=_KDkqQVttXw_nM-RyJfLImIbafFrqLsuGO5YuHqD-qQ',
     },
     {
       id: '2',
@@ -36,6 +32,8 @@ const SearchScreen = () => {
       distance: '2.0km',
       category: '카페',
       address: '대한민국 성남시 000동 000, 000길',
+      imageUrl:
+        'https://fastly.picsum.photos/id/7/4728/3168.jpg?hmac=c5B5tfYFM9blHHMhuu4UKmhnbZoJqrzNOP9xjkV4w3o',
     },
     {
       id: '3',
@@ -43,14 +41,31 @@ const SearchScreen = () => {
       distance: '2.0km',
       category: '카페',
       address: '대한민국 성남시 000동 000, 000길',
+      imageUrl:
+        'https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68',
     },
   ];
 
+  const handleSearch = query => {
+    setSearchQuery(query);
+    // 실제 검색 로직을 나중에 구현 (백엔드 연결 시)
+  };
+
   const renderResultItem = ({item}) => (
-    <TouchableOpacity style={styles.resultItem}>
+    <TouchableOpacity
+      style={styles.resultItem}
+      onPress={() =>
+        navigation.navigate('Detail', {
+          // 클릭 시 DetailScreen으로 이동
+          placeName: item.name, // 장소 이름 전달
+          placeType: item.category, // 장소 유형 전달
+          address: item.address, // 장소 주소 전달
+          imageUrl: item.imageUrl, // 임시 이미지 URL 전달
+        })
+      }>
       <View style={styles.iconContainer}>
         <Image
-          source={require('../../../assets/logo.png')}
+          source={require('../../../../assets/logo.png')}
           style={styles.locationIcon}
         />
       </View>
@@ -75,7 +90,7 @@ const SearchScreen = () => {
         />
         <TouchableOpacity style={styles.searchButton}>
           <Image
-            source={require('../../../assets/icons/home/activity/search.png')}
+            source={require('../../../../assets/icons/home/activity/search.png')}
             style={styles.searchIcon}
           />
         </TouchableOpacity>
