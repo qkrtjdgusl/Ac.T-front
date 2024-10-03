@@ -1,145 +1,35 @@
 import React from 'react';
 import {colors} from '../../../constants/colors';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {activityNavigations} from '../../../constants/navigations';
+import {StackScreenProps} from '@react-navigation/stack';
+import {ActivityStackParamList} from '../../../navigations/home/ActivityNavigator';
 
-const ActivityScreen = ({navigation}) => {
+type ActivityScreenProps = StackScreenProps<
+  ActivityStackParamList,
+  typeof activityNavigations.ACTIVITY_MAIN
+>;
+
+const ActivityScreen = ({navigation}: ActivityScreenProps) => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.section}>
-          <View style={styles.circle}>
-            <Text style={styles.circleText}>시</Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>강릉시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>동해시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>삼척시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>속초시</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>원주시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>춘천시</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>태백시</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.circle}>
-            <Text style={styles.circleText}>군</Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>고성군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>양구군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>양양군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>영월군</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>인제군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>정선군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>철원군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>평창군</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>홍천군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>화천군</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.transparentButton}
-              onPress={() => {}}>
-              <Text style={styles.buttonText}>횡성군</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-
       <TouchableOpacity
-        style={styles.floatingButton}
-        onPress={() => navigation.navigate('Plus')}>
+        style={styles.mapButton}
+        onPress={() => navigation.navigate(activityNavigations.ACTIVITY_MAP)}>
         <Image
-          source={require('../../../assets/icons/home/activity/plus.png')}
-          style={styles.icon}
+          source={require('../../../assets/icons/activity/map.png')}
+          style={styles.mapIcon}
         />
       </TouchableOpacity>
 
+      {/* 추가된 기존 버튼들 */}
       <TouchableOpacity
         style={[styles.floatingButton, styles.searchButton]}
-        onPress={() => navigation.navigate('Search')}>
+        onPress={() =>
+          navigation.navigate(activityNavigations.ACTIVITY_SEARCH)
+        }>
         <Image
-          source={require('../../../assets/icons/home/activity/search.png')}
+          source={require('../../../assets/icons/activity/search.png')}
           style={styles.icon}
         />
       </TouchableOpacity>
@@ -150,46 +40,21 @@ const ActivityScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  section: {
-    alignItems: 'flex-start',
-  },
-  scrollContainer: {
-    padding: 20,
-    paddingBottom: 120,
-    justifyContent: 'flex-start',
-  },
-  circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'transparent',
-    borderWidth: 3,
-    borderColor: colors.BLUE_MAIN,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    backgroundColor: '#D5EBF9',
   },
-  circleText: {
-    color: colors.BLUE_MAIN,
-    fontSize: 18,
-    fontWeight: '900',
+  mapButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 300,
+    height: 300,
+    bottom: 70,
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 5,
+  mapIcon: {
     width: '100%',
+    height: '100%',
   },
-  transparentButton: {
-    backgroundColor: 'transparent',
-    padding: 10,
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 16,
-  },
-
   floatingButton: {
     position: 'absolute',
     width: 60,
@@ -204,10 +69,10 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 5,
     right: 20,
-    bottom: 90, // 첫 번째 버튼의 위치 설정
+    bottom: 90,
   },
   searchButton: {
-    bottom: 20, // 두 번째 버튼을 첫 번째 버튼 아래에 위치
+    bottom: 20,
   },
   icon: {
     width: 24,

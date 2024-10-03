@@ -1,8 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {colors} from '../../../constants/colors';
+import {StackScreenProps} from '@react-navigation/stack';
+import {HomeStackParamList} from '../../../navigations/home/HomeStackNavigator';
+import {homeNavigations} from '../../../constants/navigations';
 
-const HomeScreen = ({navigation}) => {
+type HomeScreenProps = StackScreenProps<
+  HomeStackParamList,
+  typeof homeNavigations.HOME_MAIN
+>;
+
+const HomeScreen = ({navigation}: HomeScreenProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.actText}>Ac.T는 공사중 :D</Text>
@@ -12,7 +20,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.buttonRow}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Activity')}>
+          onPress={() => navigation.navigate(homeNavigations.ACTIVITY)}>
           <Image
             source={require('../../../assets/icons/home/activity.png')}
             style={styles.buttonImage}
@@ -21,7 +29,7 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Post')}>
+          onPress={() => navigation.navigate(homeNavigations.POST)}>
           <Image
             source={require('../../../assets/icons/home/post.png')}
             style={styles.buttonImage}
@@ -32,7 +40,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.buttonRow}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Mate')}>
+          onPress={() => navigation.navigate(homeNavigations.MATE)}>
           <Image
             source={require('../../../assets/icons/home/mate.png')}
             style={styles.buttonImage}
@@ -41,7 +49,7 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Store')}>
+          onPress={() => navigation.navigate(homeNavigations.STORE)}>
           <Image
             source={require('../../../assets/icons/home/store.png')}
             style={styles.buttonImage}
@@ -50,7 +58,7 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Event')}>
+          onPress={() => navigation.navigate(homeNavigations.EVENT)}>
           <Image
             source={require('../../../assets/icons/home/event.png')}
             style={styles.buttonImage}
@@ -64,7 +72,6 @@ const HomeScreen = ({navigation}) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
